@@ -1,0 +1,5 @@
+databaseChangeLog: #параметр в котором находятся миграции
+  - include:
+      file: db/changelog/changeset/001_create_table_participant.yaml
+  - include:
+      file: db/changelog/changeset/002_create_table_winners.yaml

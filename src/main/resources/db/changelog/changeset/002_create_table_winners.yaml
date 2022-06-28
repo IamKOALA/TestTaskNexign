@@ -1,0 +1,47 @@
+databaseChangeLog:
+  - changeSet:
+      id: 002_create_table_winners #текстовый идентификатор (Обязателен)
+      author: rnasibullin # автор (Обязателен)
+      changes:
+        - createTable: # создаем новую таблицу
+            tableName: winners
+            columns: # объявления колонок
+              - column:
+                  name: id
+                  type: integer
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: participant_id
+                  type: integer
+                  constraints:
+                    nullable: false
+              - column:
+                  name: prize_amount
+                  type: integer
+                  constraints:
+                    nullable:
+                      false
+        - addAutoIncrement:
+            columnDataType: integer
+            columnName: id
+            defaultOnNull: false
+            generationType: ALWAYS
+            incrementBy: 1
+            schemaName: public
+            startWith: 100
+            tableName: winners
+        - addForeignKeyConstraint:
+            baseColumnNames: participant_id
+            baseTableName: winners
+            baseTableSchemaName: public
+            constraintName: fk_winner_participant
+            deferrable: true
+            initiallyDeferred: true
+            onDelete: CASCADE
+            onUpdate: RESTRICT
+            referencedColumnNames: id
+            referencedTableName: participants
+            referencedTableSchemaName: public
+            validate: true

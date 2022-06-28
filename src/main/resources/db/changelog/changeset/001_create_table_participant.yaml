@@ -1,0 +1,45 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001_create_table_participant #текстовый идентификатор (Обязателен)
+      author: rnasibullin # автор (Обязателен)
+      changes:
+        - createTable: # создаем новую таблицу
+            tableName: participants
+            columns: # объявления колонок
+              - column:
+                  name: id
+                  type: integer
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(200)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: city
+                  type: varchar(200)
+                  constraints:
+                    nullable:
+                      false
+              - column:
+                  name: age
+                  type: integer
+                  constraints:
+                    nullable: false
+              - column:
+                  name: is_active
+                  type: boolean
+                  defaultValueBoolean: true
+                  constraints:
+                    nullable: false
+        - addAutoIncrement:
+            columnDataType: integer
+            columnName: id
+            defaultOnNull: false
+            generationType: ALWAYS
+            incrementBy: 1
+            schemaName: public
+            startWith: 100
+            tableName: participants
